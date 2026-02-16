@@ -1,0 +1,140 @@
+LANJUT VIDEO TUTORIAL: Playwright E2E Automation Framework (Web + API + Device) - 2025 - Chap 8 - 5
+
+I. Cara run program di Playwright
+- npx playwright test = Menjalankan secara end-to-end test
+- npx playwright test --headed = Menjalankan secara end-to-end test dengan tampilan browser
+- npx playwright test --ui = Menjalankan secara end-to-end test dengan tampilan UI
+- npx playwright test --project=chromium = Menjalankan test hanya dengan browser Chromium
+- npx playwright test example = Menjalankan test dengan sepsific file
+- npx playwright test --debug = Menjalankan test dengan mode debug
+- npx playwright codegen = Auto generate test dengan Codegen
+- npx playwright test --project=chromium --workers=1 = Menjalankan test dengan browser Chromium dan menjalankan satu test pada satu waktu
+- npx playwright test --project=chromium --repeat-each=20 = Menjalankan test dengan browser Chromium dan mengulang setiap test sebanyak 20 kali
+- npx playwright test --grep @Smoke --project=chromium = Menjalankan test dengan browser Chromium dan hanya menjalankan test yang memiliki tag @Smoke
+- npx playwright test --grep @Sanity --project=chromium = Menjalankan test dengan browser Chromium dan hanya menjalankan test yang memiliki tag @Sanity
+- npx playwright test --grep @Api --project=chromium = Menjalankan test dengan browser Chromium dan hanya menjalankan test yang memiliki tag @Api
+- npx playwright test --grep @Regression --project=chromium = Menjalankan test dengan browser Chromium dan hanya menjalankan test yang memiliki tag @Regression
+- npx playwright test --grep @Smoke|@Sanity --project=chromium = Menjalankan test dengan browser Chromium dan hanya menjalankan test yang memiliki tag @Smoke atau @San
+- npx playwright test --grep @Isolated --project=chromium --workers=1 = Menjalankan test dengan browser Chromium dan hanya menjalankan test yang memiliki tag @Isolated dengan menjalankan satu test pada satu waktu
+
+II. Naming Conventions
+- Folders / Files = kebab-case (contoh: login-page.spec.ts)
+- Page, Spec, dan Test files = dot-separated (contoh: login.page.ts, login.spec.ts, login.test.ts)
+- Nama Class = PascalCAse (eacch word capitalized) (contoh: LoginPage)
+- Variabel = camelCase (contoh: userName, password)
+- Function = UPPER_SNAKE_CASE (contoh: LOGIN_USER, LOGOUT_USER)
+
+III. Folder Structure untuk pembuatan Framework
+
+PLAYWRIGHT-E2E-TEST
+├── .github/                # CI Config folder
+├── .vscode/                # Editor-specific settings
+│      └── mcp.json         # MCP Server config for VS Code
+├── config/                 # Environment-specific configurations
+├── data/                   # Static data and constants
+│     └── constant.json     # Common constants used in tests
+├── debug/                  # Optional: Debug-related outputs/logs
+├── logs/                   # Application/test logs
+├── node_modules/           # Auto-generated dependencies
+├── playwright-report/      # Playwright HTML test report output
+├── resources/              # Misc test resources (e.g. images, files)
+├── tests/                  # All organized test files
+│     ├── api/              # API test specs
+│     ├── demo/             # Demo-related test specs
+│     ├── devices/          # Device related scenarios
+│     ├── e2e/              # End-to-end test specs
+│     ├── functional/       # Functional test specs
+│     ├── helpers/          # Helper functions and utilities
+│     └── page-objects/     # Page Object Model classes
+├── test-examples/          # Example test files for reference
+├── .env.example            # Sample environment variable file
+├── .env                    # Sample environment variable file
+├── .gitignore              # Git ignore rules
+├── package-lock.json       # Auto-generated dependency lock file
+└── package.json            # Project metadata and dependencies
+
+IV. Common Errors
+- Spec/test file not having `.spec or .test` init
+- Navigation timeout error
+
+```ts
+use: {
+    navigationTimeout: 30_000, // Set navigation timeout to 30 seconds
+}
+- Missing `await` keyword before action methods
+
+V. HOW TO RUN TEST WITHOUT USING "npx" keyword
+- Add the following script to your `package.json`
+e.g :  "scripts": {
+          "demo": "npx playwright test tests/demo/mytest.spec.ts --headed"
+        },
+- Then you can run the test using the command: npm run demo => call the key
+
+V. TEST RUNNER
+- Sudah ada Test Runner bawaan dari Playwright, jadi tidak perlu install test runner seperti Mocha, Jest, atau Jasmine
+- test, expect, request adalah bagian dari Playwright Test Runner, dan fungsi yang sering digunakan
+- IMPORT yang sering digunakan dari Playwright Runner: https://playwright.dev/docs/api/class-test
+
+```ts
+export const chromium
+export const firefox
+export const webkit
+export const selectors
+export const devices
+export const test
+export const expect
+export const request
+export const errors
+export const _electron
+export const _android
+export const defineConfig
+export const mergeTests
+export const mergeExpects
+export default playwright.test;
+```
+
+VI. HOW TO MAKE TEST CASE IN PLAYWRIGHT
+a. test(title, body) => Untuk membuat test case dengan judul dan langkah-langkah yang akan dijalankan
+test("Should do something", async ({page}) => {
+      // steps...
+  })
+b. test(title, details, body) => Untuk menambahkan detail seperti tag, timeout, dll pada test case
+test("Should do something", { tags: ["@Smoke"] }, async ({page}, testInfo) => {
+      // steps...
+  })
+c. test.describe(title, body)  => Untuk mengelompokkan beberapa test case yang memiliki kesamaan dalam satu group
+test.describe("Login Tests", () => {
+}
+
+VII. CONFIG TEST DIRECTORY
+- Untuk mengkonfigurasi test directory, kita bisa menggunakan file `playwright.config.ts` dan menambahkan konfigurasi `testDir`
+
+VII. PAGE PIXTURE IN PLAYWRIGHT
+- Page Fixture adalah fitur yang disediakan oleh Playwright Test Runner untuk
+menyediakan objek `page` yang sudah terinisialisasi dan siap digunakan dalam setiap test case
+- Method yang paling sering digunakan:
+a. goto(url) / goto(url, options)
+b. locator(selector)
+c. getByRole(), getByText(), getByLabel(), getByPlaceholder(), getByAltText(), getByTitle()
+d. click(selector) / click(selector, options)
+e. fill(selector) / fill(selector, value) / fill(selector, value, options)
+f. evaluate(pageFunction, arg)
+g. waitForURL(url)
+h. screenshot()
+i. title()
+j. url()
+
+VIII. CODEGEN
+- Codegen adalah fitur yang disediakan oleh Playwright untuk merekam interaksi pengguna dengan aplikasi web
+- Untuk menggunakan Codegen, bisa menjalankan perintah `npx playwright codegen` di terminal, lalu pilih browser yang
+ingin digunakan untuk merekam interaksi
+- keyword running Codegen:
+a. npx playwright codegen = Menjalankan Codegen dengan tampilan browser
+b. npx playwright codegen --target=typescript = Menjalankan Codegen dengan target
+c. npx playwright codegen --help = Menampilkan bantuan tentang pengugnaan Codegen
+d. npx playwright codegen https://katalon-demo-cura.herokuapp.com/ = Menjalankan Codegen dengan URL yang spesifik
+
+IX. PRETTY FORMAT
+Ctrl + K + 0 = Format Code dengan Prettier
+
+X. LOCATOR
