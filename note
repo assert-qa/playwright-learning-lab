@@ -1,4 +1,4 @@
-LANJUT VIDEO TUTORIAL: Playwright E2E Automation Framework (Web + API + Device) - 2025 - Chap 8 - 5
+LANJUT VIDEO TUTORIAL: Playwright E2E Automation Framework (Web + API + Device) - 2025 - Chap 10 - 5
 
 I. Cara run program di Playwright
 - npx playwright test = Menjalankan secara end-to-end test
@@ -19,7 +19,7 @@ I. Cara run program di Playwright
 
 II. Naming Conventions
 - Folders / Files = kebab-case (contoh: login-page.spec.ts)
-- Page, Spec, dan Test files = dot-separated (contoh: login.page.ts, login.spec.ts, login.test.ts)
+- Page, Spec, dan Test files = dot-separated (contoh: login.page.ts, login.test.ts, login.test.ts)
 - Nama Class = PascalCAse (eacch word capitalized) (contoh: LoginPage)
 - Variabel = camelCase (contoh: userName, password)
 - Function = UPPER_SNAKE_CASE (contoh: LOGIN_USER, LOGOUT_USER)
@@ -138,3 +138,9 @@ IX. PRETTY FORMAT
 Ctrl + K + 0 = Format Code dengan Prettier
 
 X. LOCATOR
+- Locator adalah cara untuk menemukan elemen di halaman web yang akan diuji
+- `page.getBy*()` dan `page.locator()` adalah dua metode utama untuk membuat locator di Playwright
+- Tipe locator itu berbentuk `object`
+- `page.getBy*()` ini berbentuk Promise jadi harus menggunakan `await` untuk mendapatkan hasilnya
+- `page.locator()` ini berbentuk Locator Object, jadi tidak perlu menggunakan `await` untuk mendapatkan hasilnya
+
