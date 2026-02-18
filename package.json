@@ -6,7 +6,8 @@
   "scripts": {
     "demo": "npx playwright test tests/demo/mytest.spec.ts --headed",
     "loginSpec": "npx playwright test tests/functional/login.test.ts --headed",
-    "elementHandling": "npx playwright test tests/demo/element.handling.spec.ts --headed"
+    "elementHandling": "npx playwright test tests/functional/element.handling.spec.ts --headed",
+    "inventoryList" : "npx playwright test tests/functional/inventory.spec.ts --headed"
   },
   "keywords": [],
   "author": "",

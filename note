@@ -1,4 +1,4 @@
-LANJUT VIDEO TUTORIAL: Playwright E2E Automation Framework (Web + API + Device) - 2025 - Chap 10 - 5
+LANJUT VIDEO TUTORIAL: Playwright E2E Automation Framework (Web + API + Device) - 2025 - Chap 10 - 6
 
 I. Cara run program di Playwright
 - npx playwright test = Menjalankan secara end-to-end test
@@ -143,4 +143,9 @@ X. LOCATOR
 - Tipe locator itu berbentuk `object`
 - `page.getBy*()` ini berbentuk Promise jadi harus menggunakan `await` untuk mendapatkan hasilnya
 - `page.locator()` ini berbentuk Locator Object, jadi tidak perlu menggunakan `await` untuk mendapatkan hasilnya
+
+XI. DEBUGGING OPTIONS
+- UI Mode (--ui) => Menjalankan test dengan tampilan UI yang memungkinkan kita untuk melihat hasil test secara visual
+- Debug Mode (PWDEBUG=1) => Menjalankan test dengan mode debug yang memungkinkan kita untuk melihat langkah-langkah test secara detail
+- Trace Viewer => Menjalankan test dengan mode trace yang memungkinkan kita untuk melihat langkah-langkah test secara detail dan juga melihat screenshot, video, dan log dari setiap langkah test
 

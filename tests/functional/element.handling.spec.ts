@@ -81,10 +81,20 @@ test.describe("Create new appointment", () => {
     })
 
     test("Create new appointment with valid data", async ({page}) => {
+        /* Element Handling - Checkbox and Radio Button
+        - Assert the default option - to be checked/unchecked
+        - Check / Uncheck
+        - Radio button - Allows to select only one option
+        - Checkbox - Allows for multi-entry
+        */
         // 5. Create new appointment
         await page.getByRole("combobox", {name: "Facility"}).selectOption("Hongkong CURA Healthcare Center") // Dropdown
         await page.getByLabel("Apply for hospital readmission").check()  // Checkbox
+        await expect(page.getByLabel("Apply for hospital read")).toBeVisible()
+
         await page.getByText("Medicaid").check() // Radio Button
+        await expect(page.getByText("Medicaid")).toBeChecked()
+
         await page.locator("#txt_visit_date").fill("30/12/2024") // Date Picker
         await page.locator("#txt_comment").fill("This is a comment for the appointment.")
         await page.getByRole("button", {name: "Book Appointment"}).click()
