@@ -190,3 +190,41 @@ reporter: [
    ],
  ],
  ```
+
+XIV. FIXTURE
+- Fixture adalah fitur yang disediakan oleh Playwright Test Runner untuk menyediakan data atau objek yang dibutuhkan dalam test case
+- Kenapa fixture dipakai?
+ Tanpa fixture, maka akan sering menulis kode berulang seperti:
+ - buka browser
+ - login user
+ - siapkan data
+ - cleanup setelah test
+ Dengan fixture, semua itu bisa dipusatkan dan reusable
+- Contoh paling sederhana dalam Playwright:
+ - page
+ - browser
+ - context
+
+ CONTOH:
+ import { test as base } from '@playwright/test';
+
+ export const test = base.extend({
+   loggedInPage: async ({ page }, use) => {
+     await page.goto('https://example.com/login');
+     await page.fill('#user', 'testuser');
+     await page.fill('#pass', 'password');
+     await page.click('#login');
+
+     await use(page); // test pakai page yang sudah login
+   },
+ });
+
+test('dashboard visible', async ({ loggedInPage }) => {
+  await loggedInPage.goto('/dashboard');
+});
+- Fixture di Playwright dipakai untuk:
+  ✅ setup environment test
+  ✅ share resource antar test
+  ✅ reduce duplicate code
+  ✅ auto cleanup
+  ✅ bikin test lebih clean & maintainable

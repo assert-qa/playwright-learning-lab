@@ -9,6 +9,9 @@ test("Should load homepage with correct title", async ({page}) => {
     await expect(page.locator(".text-vertical-center h1")).toHaveText("CURA Healthcare Service")
 });
 
-test("Should do something", async ({page}) => {
+test("Should demo fixtures", async ({page, browserName}, testInfo) => {
     // steps..
+    console.log('Browser: ', browserName)
+
+
 });
