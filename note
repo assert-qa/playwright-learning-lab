@@ -228,3 +228,10 @@ test('dashboard visible', async ({ loggedInPage }) => {
   ✅ reduce duplicate code
   ✅ auto cleanup
   ✅ bikin test lebih clean & maintainable
+
+XV. SCREENSHOTS
+- Playwright menyediakan fitur untuk mengambil screenshot selama test berjalan
+- Cara set Screenshot di Playwright:
+   a. `playwright.config.ts` = tambahkan di bagian use: {screenshot: 'only-on-failure'} => untuk mengambil screenshot hanya saat test gagal
+   b. {screenshot: 'on-first-failure'} => untuk mengambil screenshot hanya pada kegagalan pertama
+   c. {screenshot: 'on'} => untuk mengambil screenshot setiap kali test dijalankan
