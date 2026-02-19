@@ -5,9 +5,9 @@
   "main": "index.js",
   "scripts": {
     "demo": "npx playwright test tests/demo/mytest.spec.ts --headed",
-    "loginSpec": "npx playwright test tests/functional/login.test.ts --headed",
-    "elementHandling": "npx playwright test tests/functional/element.handling.spec.ts --headed",
-    "inventoryList" : "npx playwright test tests/functional/inventory.spec.ts --headed"
+    "loginSpec": "npx playwright test tests/functional/login.spec.ts --headed",
+    "makeAppointment": "npx playwright test tests/functional/make.aptmn.spec.ts --headed",
+    "inventoryList": "npx playwright test tests/functional/inventory.spec.ts --headed"
   },
   "keywords": [],
   "author": "",
@@ -15,6 +15,7 @@
   "type": "commonjs",
   "devDependencies": {
     "@playwright/test": "^1.58.1",
-    "@types/node": "^25.2.0"
+    "@types/node": "^25.2.0",
+    "allure-playwright": "^3.4.5"
   }
 }

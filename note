@@ -19,7 +19,7 @@ I. Cara run program di Playwright
 
 II. Naming Conventions
 - Folders / Files = kebab-case (contoh: login-page.spec.ts)
-- Page, Spec, dan Test files = dot-separated (contoh: login.page.ts, login.test.ts, login.test.ts)
+- Page, Spec, dan Test files = dot-separated (contoh: login.page.ts, login.spec.ts, login.spec.ts)
 - Nama Class = PascalCAse (eacch word capitalized) (contoh: LoginPage)
 - Variabel = camelCase (contoh: userName, password)
 - Function = UPPER_SNAKE_CASE (contoh: LOGIN_USER, LOGOUT_USER)
@@ -149,3 +149,44 @@ XI. DEBUGGING OPTIONS
 - Debug Mode (PWDEBUG=1) => Menjalankan test dengan mode debug yang memungkinkan kita untuk melihat langkah-langkah test secara detail
 - Trace Viewer => Menjalankan test dengan mode trace yang memungkinkan kita untuk melihat langkah-langkah test secara detail dan juga melihat screenshot, video, dan log dari setiap langkah test
 
+XII. ALLURE REPORT
+a. Allure Setup
+1. CHeck if allure is installed globally -> `allure --version`, if not present
+2. Install allure commandline globally -> `npm install -g allure-commandline`
+3. Install 'Allure' Reporter for project level -> `npm install -D allure-playwright`
+4. Add it in the config file (playwright.config.ts)
+```ts
+reporter: [
+    ['html'],
+    ['allure-playwright'],
+],
+```
+5. Run a test and confirm that the new folder is created `allure-results`
+6. To see the report, run this command -> `allure serve`
+7. Done!
+
+XIII. ALLURE ADVANCED SETUP
+- For more detailed reporting, you can configure additional options:
+```ts
+reporter: [
+    [
+      'html',
+    {
+       open: 'never',
+    },
+   ],
+   [
+     'allure-playwright',
+     {
+       detail: true,
+       suiteTitle: true,
+       environmentInfo: {
+         name: 'TEST',
+         appName: 'CURA',
+         release: 'Release 1.1',
+         node_version: process.version
+       },
+     },
+   ],
+ ],
+ ```
