@@ -79,7 +79,16 @@ test.describe("Create new appointment", () => {
         }
     })
 
-    test("Create new appointment with valid data", async ({page}) => {
+    test("Create new appointment with valid data", async ({page}, testInfo) => {
+        /**
+         * Add custom screenshot at test scope level
+         */
+        let fullPageLoginScreenshot = await page.screenshot({ fullPage: true});
+        await testInfo.attach("Login Page", {
+           body: fullPageLoginScreenshot,
+           contentType: "image/png"
+        });
+
         // 5. Create new appointment
         await page.getByRole("combobox", {name: "Facility"}).selectOption("Hongkong CURA Healthcare Center") // Dropdown
         await page.getByLabel("Apply for hospital readmission").check()  // Checkbox
@@ -88,7 +97,7 @@ test.describe("Create new appointment", () => {
         await page.getByText("Medicaid").check() // Radio Button
         await expect(page.getByText("Medicaid")).toBeChecked()
 
-        await page.locator("#txt_visit_date").fill("30/12/2024") // Date Picker
+       // await page.locator("#txt_visit_date").fill("30/12/2024") // Date Picker
         await page.locator("#txt_comment").fill("This is a comment for the appointment.")
         await page.getByRole("button", {name: "Book Appointment"}).click()
     })

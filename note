@@ -1,4 +1,4 @@
-LANJUT VIDEO TUTORIAL: Playwright E2E Automation Framework (Web + API + Device) - 2025 - Chap 10 - 6
+LANJUT VIDEO TUTORIAL: Playwright E2E Automation Framework (Web + API + Device) - 2025 - Chap 13 - 6
 
 I. Cara run program di Playwright
 - npx playwright test = Menjalankan secara end-to-end test
@@ -235,3 +235,22 @@ XV. SCREENSHOTS
    a. `playwright.config.ts` = tambahkan di bagian use: {screenshot: 'only-on-failure'} => untuk mengambil screenshot hanya saat test gagal
    b. {screenshot: 'on-first-failure'} => untuk mengambil screenshot hanya pada kegagalan pertama
    c. {screenshot: 'on'} => untuk mengambil screenshot setiap kali test dijalankan
+
+XVI. ANNOTATION
+- Annotation adalah fitur yang disediakan oleh Playwright Test Runner untuk memberikan informasi tambahan pada test case
+- Annotation bisa digunakan untuk memberikan tag, timeout, skip, dll pada test case
+- Contoh penggunaan annotation:
+```ts
+test('should do something', { tags: ['@Smoke'] }, async ({ page }) => {
+  // steps...
+});
+```
+
+XVII. TAGS
+- Tags adalah bagian dari annotation yang digunakan untuk mengelompokkan test case berdasarkan kategori tertentu
+- Contoh penggunaan tags:
+```ts
+test('should do something', { tags: ['@Smoke'] }, async ({ page }) =>
+{
+  // steps...
+});

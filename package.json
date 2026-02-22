@@ -8,7 +8,9 @@
     "loginSpec": "npx playwright test tests/functional/login.spec.ts --headed",
     "makeAppointment": "npx playwright test tests/functional/make.aptmn.spec.ts --headed",
     "inventoryList": "npx playwright test tests/functional/inventory.spec.ts --headed",
-    "pw-basic-cap": "npx playwright test tests/demo/pw.basic.cap.make.aptmnt.spec.ts --headed"
+    "pw-basic-cap": "npx playwright test tests/demo/pw.basic.cap.make.aptmnt.spec.ts --headed",
+    "pw-annotation" : "npx playwright test tests/demo/pw.basic.make.aptmnt.spec.ts",
+    "pw-tag" : "npx playwright test tests/demo/pw.basic.make.aptmnt.spec.ts --grep @smoke"
   },
   "keywords": [],
   "author": "",
