@@ -254,3 +254,33 @@ test('should do something', { tags: ['@Smoke'] }, async ({ page }) =>
 {
   // steps...
 });
+
+
+XVIII. AUTO WAITING
+- Playwright memiliki fitur auto waiting yang secara otomatis menunggu elemen muncul sebelum melakukan aksi
+- Contoh Auto Waiting:
+```ts
+await page.click('#submit'); // Playwright akan otomatis menunggu elemen dengan id submit muncul
+```
+- Contoh Implicit Wait:
+```ts
+await page.waitForSelector('#submit'); // Menunggu elemen dengan id submit muncul sebelum melanjutkan
+```
+- Contoh Explicit Wait:
+```ts
+await page.waitForFunction(() => {
+  return document.querySelector('#submit') !== null; // Menunggu hingga elemen dengan id submit muncul di DOM
+});
+```
+- Contoh sleep():
+```ts
+await page.waitForTimeout(5000); // Menunggu selama 5 detik sebelum melanjutkan
+```
+- Contoh waitForDisplayed:
+```ts
+await page.waitForSelector('#submit', { state: 'visible' }); // Menunggu hingga elemen dengan id submit terlihat
+```
+- Contoh pause():
+```ts
+await page.pause(); // Menjeda eksekusi test untuk debugging
+```
