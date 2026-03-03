@@ -4,9 +4,9 @@ import { defineConfig, devices } from '@playwright/test';
  * Read environment variables from file.
  * https://github.com/motdotla/dotenv
  */
-// import dotenv from 'dotenv';
-// import path from 'path';
-// dotenv.config({ path: path.resolve(__dirname, '.env') });
+import * as dotenv from 'dotenv';
+import * as path from 'node:path';
+dotenv.config({ path: path.resolve(__dirname, '.env') });
 
 /**
  * See https://playwright.dev/docs/test-configuration.
@@ -21,6 +21,8 @@ export default defineConfig({
   retries: process.env.CI ? 2 : 0,
   /* Opt out of parallel tests on CI. */
   workers: process.env.CI ? 1 : undefined,
+  globalSetup: require.resolve('./tests/helpers/global-setup.ts'), // NEW ADDED - Global setup to clean allure results
+  globalTeardown: require.resolve('./tests/helpers/global-teardown.ts'), // NEW ADDED - Global teardown to start allure server
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   reporter: [['html', {
     open: 'never',
@@ -45,20 +47,25 @@ export default defineConfig({
     video: 'retain-on-failure', // OPTIONAL - Video on failure
     ignoreHTTPSErrors: true,
     navigationTimeout: 30_000,
+    actionTimeout: 10_000,
   },
 
   /* Configure projects for major browsers */
   projects: [
     {
       name: 'chromium',
-      use: { ...devices['Desktop Chrome'] },
+      use: { //...devices['Desktop Chrome'],
+        viewport: null,
+        launchOptions: {
+          args: ["--start-maximized"],
+        }},
     },
-
+    /*
     {
       name: 'firefox',
       use: { ...devices['Desktop Firefox'] },
     },
-    /*
+
     {
       name: 'webkit',
       use: { ...devices['Desktop Safari'] },

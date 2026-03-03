@@ -284,3 +284,40 @@ await page.waitForSelector('#submit', { state: 'visible' }); // Menunggu hingga 
 ```ts
 await page.pause(); // Menjeda eksekusi test untuk debugging
 ```
+
+XIX. HOOKS
+- Hooks adalah fitur yang disediakan oleh Playwright Test Runner untuk menjalankan kode sebelum atau setelah test case dijalankan
+- Contoh penggunaan hooks:
+```ts
+test.beforeEach(async ({ page }) => {
+    // kode yang dijalankan sebelum setiap test case
+});
+test.afterEach(async ({ page }) => {
+    // kode yang dijalankan setelah setiap test case
+});
+test.beforeAll(async ({ page }) => {
+    // kode yang dijalankan sebelum semua test case
+});
+test.afterAll(async ({ page }) => {
+    // kode yang dijalankan setelah semua test case
+});
+```
+
+XV. GLOBAL
+a. Global Setup
+1. npm install dotenv
+2. npm install -D @types/node
+3. Create key with value in .env / .env.example
+4. Create `global-setup.ts` under `helper`
+5. Link it to the `playwright.config.ts`
+6. Add globalSetup in `playwright.config.ts` ( globalSetup: require.resolve('./tests/helpers/global-setup.ts'))
+7. Uncomment:
+`import * as dotenv from 'dotenv'`;
+`import * as path from 'node:path'`;
+`dotenv.config({ path: path.resolve(__dirname, '.env') });`
+
+b. Global Teardown Setup
+1. Create `global-teardown.ts` under `helper`
+2. Link it to the `config`
+3. Add globalTeardown in `playwright.config.ts` ( globalTeardown: require.resolve('./tests/helpers/global-teardown.ts'))
+4. Done
