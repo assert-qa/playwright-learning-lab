@@ -54,11 +54,11 @@ export default defineConfig({
   projects: [
     {
       name: 'chromium',
-      use: { //...devices['Desktop Chrome'],
-        viewport: null,
-        launchOptions: {
-          args: ["--start-maximized"],
-        }},
+      use: { ...devices['Desktop Chrome']},
+        // viewport: null,
+        // launchOptions: {
+        //   args: ["--start-maximized"],
+        // }},
     },
     /*
     {
@@ -90,6 +90,10 @@ export default defineConfig({
     //   name: 'Google Chrome',
     //   use: { ...devices['Desktop Chrome'], channel: 'chrome' },
     // },
+    {
+      name: "Galaxy A55",
+      use: {...devices["Galaxy A55"]}
+    }
   ],
 
   /* Run your local dev server before starting the tests */

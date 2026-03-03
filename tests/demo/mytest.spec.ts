@@ -1,4 +1,4 @@
-import {test, expect} from '@playwright/test';
+import {test, expect, devices} from '@playwright/test';
 
 test("Should load homepage with correct title", async ({page}) => {
     // 1. Go to the homepage
@@ -13,5 +13,12 @@ test("Should demo fixtures", async ({page, browserName}, testInfo) => {
     // steps..
     console.log('Browser: ', browserName)
 
-
 });
+
+// Test multi-browser and devices
+test("Should demo devices and parallel execution", async ({page, browserName}) => {
+    console.log('Browser: ', browserName)
+    // check devices
+    console.log(`The list devices: ${Object.keys(devices)}`);
+
+})

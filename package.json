@@ -4,14 +4,15 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "demo": "npx playwright test tests/demo/mytest.spec.ts --headed",
+    "demo": "npx playwright test tests/demo/mytest.spec.ts",
     "login": "npx playwright test tests/functional/login.spec.ts --headed",
     "makeAppointment": "npx playwright test tests/functional/make.aptmn.spec.ts --headed",
     "inventoryList": "npx playwright test tests/functional/inventory.spec.ts --headed",
     "pw-basic-cap": "npx playwright test tests/demo/pw.basic.cap.make.aptmnt.spec.ts --headed",
     "pw-annotation": "npx playwright test tests/demo/pw.basic.make.aptmnt.spec.ts",
     "pw-tag": "npx playwright test tests/demo/pw.basic.make.aptmnt.spec.ts --grep @smoke",
-    "demo:global": "npx playwright test tests/functional/login.spec.ts"
+    "demo:global": "npx playwright test tests/functional/login.spec.ts",
+    "make-apt": "npx playwright test tests/functional/make.aptmn.spec.ts --headed"
   },
   "keywords": [],
   "author": "",

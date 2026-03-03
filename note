@@ -321,3 +321,29 @@ b. Global Teardown Setup
 2. Link it to the `config`
 3. Add globalTeardown in `playwright.config.ts` ( globalTeardown: require.resolve('./tests/helpers/global-teardown.ts'))
 4. Done
+
+XVI. Multi Browser Test
+- Playwright mendukung pengujian di berbagai browser seperti Chromium, Firefox, dan WebKit
+- Untuk menjalankan test di semua browser, kita bisa menggunakan konfigurasi `projects` di `playwright.config.ts`
+- Contoh konfigurasi:
+```
+test("Should demo devices and parallel execution", async ({page, browserName}) => {
+    console.log('Browser: ', browserName)
+    // check devices
+    console.log(`The list devices: ${Object.keys(devices)}`);
+})
+```
+Setelah mendapatkan device yang diinginkan, tambahkan di bagian `projects` di `playwright.config.ts`:
+```
+{
+   name: "Galaxy A55",
+   use: {...devices["Galaxy A55"]}
+}y
+```
+dan comment bagian ini:
+```
+viewport: null,
+launchOptions: {
+args: ["--start-maximized"],
+}},
+```
