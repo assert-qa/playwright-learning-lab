@@ -1,5 +1,5 @@
 import {test, expect} from '@playwright/test';
-
+import {log} from "../helpers/logger";
 
 // Learn Annotation
 test.describe("Login functionality",{annotation: {type: "LOGIN", description: "JIRA-1234: Verify Login Functionality"}},() => {
@@ -7,6 +7,9 @@ test.describe("Login functionality",{annotation: {type: "LOGIN", description: "J
         "Go to the login page", async ({page}, testInfo) => {
         // 1. Launch URL
         const envConfig = testInfo.project.use as any;
+
+        // Custom log
+        await log("log", `Launching the web app in ${envConfig.envName}`)
 
         await page.goto(envConfig.appURL)
         await expect(page).toHaveTitle("CURA Healthcare Service")
@@ -24,6 +27,8 @@ test.describe("Login functionality",{annotation: {type: "LOGIN", description: "J
         await page.getByLabel("Username").fill(process.env.TEST_USER_NAME)
         await page.locator("#txt-password").fill(process.env.TEST_PASSWORD)
         await page.getByRole("button", {name: "Login"}).press("Enter") // Press
+
+        await log("info", "Login successful")
 
         // // 4. Assert
         // const actualSuccessfulLogin = "Make Appointment"

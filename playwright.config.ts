@@ -91,10 +91,10 @@ export const baseConfig = defineConfig({
     //   name: 'Google Chrome',
     //   use: { ...devices['Desktop Chrome'], channel: 'chrome' },
     // },
-    {
-      name: "Galaxy A55",
-      use: {...devices["Galaxy A55"]}
-    }
+    // {
+    //   name: "Galaxy A55",
+    //   use: {...devices["Galaxy A55"]}
+    // }
   ],
 
   /* Run your local dev server before starting the tests */

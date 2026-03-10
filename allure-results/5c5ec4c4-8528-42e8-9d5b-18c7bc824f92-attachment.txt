@@ -1,0 +1,1 @@
+>> Login Cookies: [{"name":"PHPSESSID","value":"8guknipuii873f0gb9pr5gadg01j92s1","domain":"katalon-demo-cura.herokuapp.com","path":"/","expires":-1,"httpOnly":false,"secure":false,"sameSite":"Lax"}]

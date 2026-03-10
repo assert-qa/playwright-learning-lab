@@ -398,3 +398,9 @@ XX. HANDLING SENSITIVE DATA
 1. Check or install if `dotenv` is installed
 2. Create `.env` file in the root directory and add sensitive data in it
 3. Start using them with `process.env.<varname>`
+
+XXI. LOGGING
+- Playwright menyediakan fitur logging untuk membantu dalam debugging dan analisis test
+1. Install Chalk -> `npm install chalk` / `npm i --save-dev chalk`
+2. Import the log function and start logging
+3. Run a test and see the logs
