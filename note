@@ -1,4 +1,3 @@
-LANJUT VIDEO TUTORIAL: Playwright E2E Automation Framework (Web + API + Device) - 2025 - Chap 14 - 3
 
 I. Cara run program di Playwright
 - npx playwright test = Menjalankan secara end-to-end test
@@ -346,4 +345,51 @@ viewport: null,
 launchOptions: {
 args: ["--start-maximized"],
 }},
+```
+
+XVII. PARALLEL TEST
+- Playwright mendukung eksekusi test secara paralel untuk meningkatkan kecepatan pengujian
+- Untuk menjalankan test secara paralel, kita bisa menggunakan konfigurasi `workers` di `playwright.config.ts`
+- Contoh konfigurasi:
+```
+workers: 4, // Menjalankan 4 test secara paralel
+```
+- Atau bisa juga menggunakan command line:
+```
+npx playwright test --workers=4
+```
+- Worker process adalah proses yang menjalankan test secara paralel, jadi semakin banyak worker yang digunakan, semakin cepat test dijalankan, tetapi juga membutuhkan lebih banyak sumber daya komputer.
+Projects (browser / devices) > Spec files > Config (full parallel ? (ON / OFF))
+- Max Parallel Worker = 50% System Core (6 if 12 cores)
+
+XVIII. DATA
+1. Static Data (constants.json) e.g SQL Query Template, EPI Endpoint (/user)
+   a. Keep all constants/static data in `constants.json` under `/data` folder
+   b. Change the value to `true` in tsconfig.json
+   b. Start importing the `json` when required
+2. Test Data (parameterization) e.g Test data
+   a. Create `test-data.ts` file under `/data` folder
+   b. Create a class `TestData` and create a `static` method
+3. Dynamic Data (Global setup) e.g System Generated Auth Token
+   a. Initialize a global variable in `global-setup.ts` and assign the value to it
+   b. Set anywhere in projects usings `node.process.<KEY>`
+   c. Access it anywhere, optionally we can reset in `global-teardown.ts` file
+4. Env Config (config file) e.g APP URL
+5. Sensitive Data (.env) e.g password
+
+XIX. HANDLING ENVIRONMENT SPECIFIC DATA
+1. Create a new fixture `config-fixtures.ts` under `/helpers` folder
+2. Define `EnvConfig` type and target fields
+3. Define an option and provide a default value
+4. Create a new config gile `test.playwright.config.ts` under `/config` folder
+5. There should be one function that has to `export default definceConfig`
+6. Change the root config export to
+   -> `export default definceConfig({})` -> `export const baseConfig = definceConfig({})`
+7. Import `root` config `import { baseConfig } from '../config/test.playwright.config'`
+8. Extent the root config setting will `spread operator`
+e.g
+```
+dev:smoke : npx playwright test --config <dev.config>
+test:smoke : npx playwright test --config <test.config>
+prod:smoke : npx playwright test --config <prod.config>
 ```

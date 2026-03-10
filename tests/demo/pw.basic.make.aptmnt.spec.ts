@@ -1,11 +1,14 @@
 import {test, expect} from '@playwright/test';
 
+
 // Learn Annotation
 test.describe("Login functionality",{annotation: {type: "LOGIN", description: "JIRA-1234: Verify Login Functionality"}},() => {
     test.beforeEach(
-        "Go to the login page", async ({page}) => {
+        "Go to the login page", async ({page}, testInfo) => {
         // 1. Launch URL
-        await page.goto("https://katalon-demo-cura.herokuapp.com/")
+        const envConfig = testInfo.project.use as any;
+
+        await page.goto(envConfig.appURL)
         await expect(page).toHaveTitle("CURA Healthcare Service")
         await expect(page.locator("//h1")).toHaveText("CURA Healthcare Service")
 
@@ -30,12 +33,14 @@ test.describe("Login functionality",{annotation: {type: "LOGIN", description: "J
 
 // Learn Tag
 test.describe("Create new appointment", {tag: ["@smoke"]}, () => {
-    test.beforeEach("Go to the login page", async ({page, browserName}) => {
+    test.beforeEach("Go to the login page", async ({page, browserName}, testInfo) => {
         // Skip the test for firefox
         test.skip(browserName === "firefox", "This test is not compatible with Firefox")
 
         // 1. Launch URL
-        await page.goto("https://katalon-demo-cura.herokuapp.com/")
+        const envConfig = testInfo.project.use as any;
+        await page.goto(envConfig.appURL)
+
         await expect(page).toHaveTitle("CURA Healthcare Service")
         await expect(page.locator("//h1")).toHaveText("CURA Healthcare Service")
 
@@ -48,6 +53,11 @@ test.describe("Create new appointment", {tag: ["@smoke"]}, () => {
         await page.getByLabel("Username").fill("John Doe")
         await page.locator("#txt-password").fill("ThisIsNotAPassword")
         await page.getByRole("button", {name: "Login"}).press("Enter") // Press
+
+        // 3b. Get Login cookies
+        const loginCookies = await page.context().cookies()
+        // set Global variable for login cookies
+        process.env.LOGIN_COOKIES = JSON.stringify(loginCookies)
 
         // 4. Assert
         const actualSuccessfulLogin = "Make Appointment"
@@ -64,6 +74,8 @@ test.describe("Create new appointment", {tag: ["@smoke"]}, () => {
             body: fullPageLoginScreenshot,
             contentType: "image/png"
         });
+        // 4b. Access the login cookies from environment variable and set it to the page context
+        console.log(`>> Login Cookies: ${process.env.LOGIN_COOKIES}`)
 
         // 5. Create new appointment
         await page.getByRole("combobox", {name: "Facility"}).selectOption("Hongkong CURA Healthcare Center") // Dropdown

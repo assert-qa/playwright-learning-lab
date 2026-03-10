@@ -12,7 +12,12 @@
     "pw-annotation": "npx playwright test tests/demo/pw.basic.make.aptmnt.spec.ts",
     "pw-tag": "npx playwright test tests/demo/pw.basic.make.aptmnt.spec.ts --grep @smoke",
     "demo:global": "npx playwright test tests/functional/login.spec.ts",
-    "make-apt": "npx playwright test tests/functional/make.aptmn.spec.ts --headed"
+    "make-apt": "npx playwright test tests/functional/make.aptmn.spec.ts --headed",
+    "demo-parallel": "npx playwright test --grep @demo",
+    "global-variable": "npx playwright test tests/demo/pw.basic.make.aptmnt.spec.ts",
+    "test:make-apt": "npx playwright test --config=config/test.playwright.config.ts tests/demo/pw.basic.make.aptmnt.spec.ts",
+    "dev:make-apt": "npx playwright test --config=config/dev.playwright.config.ts tests/demo/pw.basic.make.aptmnt.spec.ts",
+    "prod:make-apt": "npx playwright test --config=config/prod.playwright.config.ts tests/demo/pw.basic.make.aptmnt.spec.ts"
   },
   "keywords": [],
   "author": "",
