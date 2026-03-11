@@ -17,7 +17,8 @@
     "global-variable": "npx playwright test tests/demo/pw.basic.make.aptmnt.spec.ts",
     "test:make-apt": "npx playwright test --config=config/test.playwright.config.ts tests/demo/pw.basic.make.aptmnt.spec.ts",
     "dev:make-apt": "npx playwright test --config=config/dev.playwright.config.ts tests/demo/pw.basic.make.aptmnt.spec.ts",
-    "prod:make-apt": "npx playwright test --config=config/prod.playwright.config.ts tests/demo/pw.basic.make.aptmnt.spec.ts"
+    "prod:make-apt": "npx playwright test --config=config/prod.playwright.config.ts tests/demo/pw.basic.make.aptmnt.spec.ts",
+    "pom:admin-login": "npx playwright test --config=config/test.playwright.config.ts tests/e2e/nopcommerce.e2e.spec.ts"
   },
   "keywords": [],
   "author": "",

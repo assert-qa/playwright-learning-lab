@@ -404,3 +404,26 @@ XXI. LOGGING
 1. Install Chalk -> `npm install chalk` / `npm i --save-dev chalk`
 2. Import the log function and start logging
 3. Run a test and see the logs
+
+XXII. CHARACTERISTICS OF TEST FRAMEWORK
+1. Reusable
+2. Maintainable
+3. Scalable
+4. Reliable
+5. Easy to use
+6. Fast execution
+7. Good reporting
+8. Support parallel execution
+9. Support multiple browsers
+10. Support multiple platforms (web, mobile, desktop)
+11. Support for data-driven testing
+12. Support for behavior-driven development (BDD)
+13. Support for test case management tools
+14. Support for continuous integration (CI) tools
+15. Support for test automation tools
+16. Support for test management tools
+
+XXIII. PAGE OBJECT MODEL (POM)
+- POM is a page or section of a web page as an object
+In technical terms, an object can have properties (i.e elements) and methods (i.e actions)
+- POM is a design pattern that helps to create an object repository for web UI elements.
