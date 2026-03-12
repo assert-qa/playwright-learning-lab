@@ -4,6 +4,7 @@ export type EnvConfig = {
     envName: string,
     appURL: string,
     nopCommerceWeb: string,
+    apiURL: string,
     dbConfig: {}
 };
 
@@ -11,5 +12,6 @@ export const test = base.extend<EnvConfig>({
     envName: ["test", {option: true}],
     appURL: ["https://katalon-demo-cura.herokuapp.com/", {option: true}],
     nopCommerceWeb: ["https://admin-demo.nopcommerce.com/login?returnUrl=%2Fadmin%2F", {option: true}],
+    apiURL: ["https://automationexercise.com/api", {option: true}],
     dbConfig: [{}, {option: true}]
 });

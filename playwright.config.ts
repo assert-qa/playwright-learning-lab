@@ -22,30 +22,32 @@ export const baseConfig = defineConfig({
   retries: process.env.CI ? 2 : 0,
   /* Opt out of parallel tests on CI. */
   workers: process.env.CI ? 1 : undefined,
-  globalSetup: require.resolve('./tests/helpers/global-setup.ts'), // NEW ADDED - Global setup to clean allure results
-  globalTeardown: require.resolve('./tests/helpers/global-teardown.ts'), // NEW ADDED - Global teardown to start allure server
+  globalSetup: require.resolve('./tests/helpers/global-setup.ts'),
+  globalTeardown: require.resolve('./tests/helpers/global-teardown.ts'),
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
-  reporter: [['html', {
-    open: 'never',
-  }], ['allure-playwright', {
-    detail: true,
-    suiteTitle: true,
-    environmentInfo: {
-      name: 'Test',
-      appName: 'CURA Healthcare Service',
-      Release: 'Release 1.1',
-      node_version: process.version,
-    }
-  }]],
+  reporter: [
+    ['html', { open: 'never' }],
+    ['allure-playwright', {
+      detail: true,
+      outputFolder: 'allure-results',
+      suiteTitle: true,
+      environmentInfo: {
+        name: 'Test',
+        appName: 'CURA Healthcare Service',
+        Release: 'Release 1.1',
+        node_version: process.version,
+      }
+    }]
+  ],
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     /* Base URL to use in actions like `await page.goto('')`. */
     // baseURL: 'http://localhost:3000',
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
-    trace: 'on-first-retry',
-    screenshot: 'only-on-failure', // NEW ADDED - Screenshot on failure
-    video: 'retain-on-failure', // OPTIONAL - Video on failure
+    trace: 'retain-on-failure',
+    screenshot: 'only-on-failure',
+    video: 'retain-on-failure',
     ignoreHTTPSErrors: true,
     navigationTimeout: 30_000,
     actionTimeout: 10_000,
@@ -56,10 +58,6 @@ export const baseConfig = defineConfig({
     {
       name: 'chromium',
       use: { ...devices['Desktop Chrome']},
-        // viewport: null,
-        // launchOptions: {
-        //   args: ["--start-maximized"],
-        // }},
     },
     /*
     {

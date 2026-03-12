@@ -2,5 +2,9 @@
   "STATUS_CODE": {
     "success": 200,
     "validationError": 707
+  },
+  "REQ_REST_ENDPOINT": {
+    "GET_LIST_PRODUCTS": "/productsList",
+    "POST_SEARCH_PRODUCT": "/searchProduct"
   }
 }

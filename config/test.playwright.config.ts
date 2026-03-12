@@ -13,6 +13,7 @@ export default defineConfig<EnvConfig>({
         envName: "test",
         appURL: "https://katalon-demo-cura.herokuapp.com/",
         nopCommerceWeb: "https://admin-demo.nopcommerce.com/login?returnUrl=%2Fadmin%2F",
+        apiURL: "https://automationexercise.com/api",
         dbConfig: {
             server: "",
             host: "test-db-host",

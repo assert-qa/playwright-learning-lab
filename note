@@ -427,3 +427,15 @@ XXIII. PAGE OBJECT MODEL (POM)
 - POM is a page or section of a web page as an object
 In technical terms, an object can have properties (i.e elements) and methods (i.e actions)
 - POM is a design pattern that helps to create an object repository for web UI elements.
+
+XXIV. API TESTING
+- API testing is a type of software testing that focuses on testing the application programming interfaces (APIs) directly and as part of integration testing to determine if they meet expectations for functionality, reliability,
+performance, and security.
+- API methods:
+a. GET => Retrieve data from the server
+b. POST => Send data to the server to create a new resource
+c. PUT => Send data to the server to update an existing resource
+d. DELETE => Remove a resource from the server
+e. PATCH => Send data to the server to partially update an existing resource
+f. HEAD => Retrieve the headers of a resource
+
