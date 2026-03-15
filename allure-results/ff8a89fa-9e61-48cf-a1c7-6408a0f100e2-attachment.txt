@@ -1,0 +1,6 @@
+[2026-03-13T11:29:34.146Z] [INFO] Logging in as admin
+[2026-03-13T11:29:34.152Z] [INFO] Navigating to the URL: https://admin-demo.nopcommerce.com/login?returnUrl=%2Fadmin%2F
+[2026-03-13T11:29:34.153Z] [INFO] Navigating to the path: https://admin-demo.nopcommerce.com/login?returnUrl=%2Fadmin%2F
+[2026-03-13T11:29:38.913Z] [INFO] Typing text: admin@yourstore.com into the element: locator('//input[@id=\'Email\']')
+[2026-03-13T11:29:39.006Z] [INFO] Typing text: admin into the element: locator('//input[@id=\'Password\']')
+[2026-03-13T11:29:39.128Z] [INFO] Login successful
